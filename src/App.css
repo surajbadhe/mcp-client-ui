@@ -1,38 +1,105 @@
 /* src/App.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
+/* --- NEW: CSS Variables for Theming --- */
 :root {
+  /* Light Theme Palette */
+  --background-color: #f0f2f5;
+  --surface-color: #ffffff;
+  --primary-text-color: #1a1a1a;
+  --secondary-text-color: #65676b;
+  --border-color: #e0e0e0;
+  --accent-color: #0084ff;
+  --user-bubble-color: #0084ff;
+  --user-bubble-text-color: #ffffff;
+  --ai-bubble-color: #e4e6eb;
+  --input-background-color: #f0f2f5;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Palette */
   --background-color: #121212;
   --surface-color: #1e1e1e;
   --primary-text-color: #e0e0e0;
   --secondary-text-color: #a0a0a0;
+  --border-color: #333333;
   --accent-color: #00aaff;
   --user-bubble-color: #007acc;
+  --user-bubble-text-color: #ffffff;
   --ai-bubble-color: #333333;
-  --error-color: #cf6679;
+  --input-background-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.2);
 }
+/* --- End of Theming Variables --- */
+
 
 body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--background-color);
     color: var(--primary-text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
+/* .chat-app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100vh; /* Make the container span the full viewport height */
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto; /* Center the container horizontally */
     background-color: var(--surface-color);
-    border-left: 1px solid var(--ai-bubble-color);
-    border-right: 1px solid var(--ai-bubble-color);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: background-color 0.3s, border-color 0.3s;
+    /* Removed fixed height, max-height, border-radius, and box-shadow */
 }
+
+
+/* --- NEW: Header Styling --- */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.app-header h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--primary-text-color);
+}
+
+.theme-toggle-button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--ai-bubble-color);
+    transform: rotate(15deg);
+}
+/* --- End of Header Styling --- */
 
 .chat-window {
     flex-grow: 1;
@@ -43,15 +110,10 @@ body {
     gap: 15px;
 }
 
-/* Scrollbar styling for a modern look */
-.chat-window::-webkit-scrollbar {
-    width: 8px;
-}
-.chat-window::-webkit-scrollbar-track {
-    background: var(--surface-color);
-}
+.chat-window::-webkit-scrollbar { width: 8px; }
+.chat-window::-webkit-scrollbar-track { background: var(--surface-color); }
 .chat-window::-webkit-scrollbar-thumb {
-    background-color: #555;
+    background-color: var(--secondary-text-color);
     border-radius: 10px;
     border: 2px solid var(--surface-color);
 }
@@ -62,7 +124,7 @@ body {
     border-radius: 18px;
     line-height: 1.6;
     word-wrap: break-word;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px var(--shadow-color);
     animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -71,14 +133,11 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.message-bubble p {
-    margin: 0;
-    white-space: pre-wrap;
-}
+.message-bubble p { margin: 0; white-space: pre-wrap; }
 
 .user-bubble {
     background-color: var(--user-bubble-color);
-    color: white;
+    color: var(--user-bubble-text-color);
     align-self: flex-end;
     border-bottom-right-radius: 4px;
 }
@@ -89,27 +148,21 @@ body {
     border-bottom-left-radius: 4px;
 }
 
-.error-bubble {
-    background-color: rgba(207, 102, 121, 0.2);
-    color: var(--error-color);
-    border: 1px solid var(--error-color);
-}
-
 .chat-input-area {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
     margin: 20px;
     border-radius: 12px;
-    background-color: var(--ai-bubble-color);
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    background-color: var(--input-background-color);
+    flex-shrink: 0;
 }
 
 .chat-input-area textarea {
     flex-grow: 1;
     border: none;
     background: transparent;
-    padding: 10px 0;
+    padding: 10px;
     font-size: 16px;
     resize: none;
     color: var(--primary-text-color);
@@ -118,16 +171,12 @@ body {
     line-height: 1.5;
 }
 
-.chat-input-area textarea:focus {
-    outline: none;
-}
-
-.chat-input-area textarea::placeholder {
-    color: var(--secondary-text-color);
-}
+.chat-input-area textarea:focus { outline: none; }
+.chat-input-area textarea::placeholder { color: var(--secondary-text-color); }
 
 .chat-input-area button {
     background-color: var(--accent-color);
+    /* ... rest of button styles are the same ... */
     border: none;
     margin-left: 10px;
     width: 40px;
@@ -140,27 +189,18 @@ body {
     transition: transform 0.2s, background-color 0.2s;
 }
 
-.chat-input-area button:hover:not(:disabled) {
-    transform: scale(1.1);
-    background-color: #0095e0;
-}
+.send-icon { color: white; width: 20px; height: 20px; }
 
-.chat-input-area button:disabled {
-    background-color: #555;
-    cursor: not-allowed;
-    transform: scale(1);
+.typing-indicator span { background-color: var(--secondary-text-color); }
+/* Other existing styles like animations, error bubbles, etc., remain the same */
+.error-bubble {
+    background-color: rgba(207, 102, 121, 0.2);
+    color: #cf6679;
+    border: 1px solid #cf6679;
 }
-
-.send-icon {
-    width: 20px;
-    height: 20px;
-    color: white;
-}
-
-.loading-bubble {
-    padding: 20px;
-}
-
-.typing-indicator span {
-    background-color: var(--secondary-text-color);
-}
+.loading-bubble { padding: 20px; }
+.typing-indicator { display: flex; gap: 5px; }
+.typing-indicator span { height: 8px; width: 8px; border-radius: 50%; animation: bounce 1.3s infinite; }
+.typing-indicator span:nth-of-type(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-of-type(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
