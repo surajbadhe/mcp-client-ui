@@ -22,12 +22,6 @@ Instead of traditional forms and buttons, this UI provides a chatbot experience 
 
 This React application is the user-facing component of a larger, multi-service architecture. It communicates directly with the MCP Client Gateway, which orchestrates the interaction with the AI and backend services.
 
-```mermaid
-graph TD
-		A[React Chat UI (This Project)] -- "HTTP API Calls" --> B{MCP Client Gateway};
-		B -- "..." --> C[Backend Services];
-```
-
 ## Key Features
 
 - **Conversational Chat Interface:** A clean and intuitive UI for chatbot-style interactions.
