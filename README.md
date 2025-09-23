@@ -1,70 +1,102 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# AI Chat UI for MCP Backend
+
+## Table of Contents
+
+- [Description](#description)
+- [Architecture](#architecture)
+- [Key Features](#key-features)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+- [Available Scripts](#available-scripts)
+- [Screenshots](#screenshots)
+- [Contact](#contact)
+
+## Description
+
+This project is a modern and responsive conversational chat interface built with React. It serves as the frontend for the ecommerce-mcp-client, allowing users to interact with a e-commerce backend using natural language.
+
+Instead of traditional forms and buttons, this UI provides a chatbot experience where users can type commands like "show me all Nike products" or "add an item to my cart," and the AI-powered backend handles the rest.
+
+## Architecture
+
+This React application is the user-facing component of a larger, multi-service architecture. It communicates directly with the MCP Client Gateway, which orchestrates the interaction with the AI and backend services.
+
+```mermaid
+graph TD
+		A[React Chat UI (This Project)] -- "HTTP API Calls" --> B{MCP Client Gateway};
+		B -- "..." --> C[Backend Services];
+```
+
+## Key Features
+
+- **Conversational Chat Interface:** A clean and intuitive UI for chatbot-style interactions.
+- **Dual Chat Modes:** Supports both a tool-enabled mode (for interacting with the e-commerce store) and a conversational memory mode.
+- **Light/Dark Theme Switcher:** A toggle to switch between a sleek dark theme and a clean light theme.
+- **Built with React:** A modern, component-based frontend for a high-performance user experience.
+- **Backend Integration:** Pre-configured to connect to the ecommerce-mcp-client API.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v18 or higher
+- npm v9 or higher
+- A running instance of the Ecommerce MCP Client Gateway (which this UI connects to)
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/surajbadhe/mcp-client-ui.git
+cd mcp-client-ui
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+### Running the App
+
+To start the development server:
+
+```bash
+npm start
+```
+
+The application will open in your browser at [http://localhost:3000](http://localhost:3000).
+
+## Configuration
+
+The backend API endpoint is configured via an environment variable.
+
+Create a file named `.env` in the root of the project and add the following line, pointing to your running MCP Client Gateway application:
+
+```env
+REACT_APP_API_URL=http://localhost:8090/api
+```
+
+Your chat components will then make calls to endpoints like `http://localhost:8090/api/chat`.
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` – Starts the development server.
+- `npm run build` – Builds the application for production.
+- `npm test` – Runs the test suite.
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Chat interface in dark mode**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Dark Mode](public/chat-dark.png)
 
-### `npm test`
+**Chat interface in light mode**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Light Mode](public/chat-light.png)
 
-### `npm run build`
+## Contact
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Maintainer: [Suraj Badhe](https://github.com/surajbadhe)
