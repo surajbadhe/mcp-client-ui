@@ -85,11 +85,11 @@ Your chat components will then make calls to endpoints like `http://localhost:80
 
 **Chat interface in dark mode**
 
-![Dark Mode](public/chat-dark.jpg)
+![Dark Mode](public/chat-dark1.jpg)
 
 **Chat interface in light mode**
 
-![Light Mode](public/chat-light.jpg)
+![Light Mode](public/chat-light1.jpg)
 
 ## Contact
 
